@@ -1,25 +1,25 @@
 #define _CRT_SECURE_NO_WARNINGS
 
-#include "stack.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
+#include "stack.h"
+
+
 
 stack* stack_init(int stack_size)
 {
 	stack* ptr = (stack*)malloc(sizeof(stack));
 	if (ptr == '\0') {
-		printf("Error, It Couldn't Allocated!\n");
-		assert(ptr == '\0');
+		return NULL;
 	}
 
 	ptr->array_size = stack_size;
 	ptr->top = -1;
-	ptr->data = (stack*)malloc(sizeof(int) * (ptr->array_size));
+	ptr->data = (int*)malloc(sizeof(int) * (ptr->array_size));
 
 	if (ptr->data == '\0') {
-		printf("Error, It Couldn't Allocated!\n");
-		assert(ptr == '\0');
+		return NULL;
 	}
 
 	return ptr;
@@ -31,39 +31,32 @@ void push(stack* ptr, int value)
 		++ptr->top;
 		ptr->data[ptr->top] = value;
 	}
-	if (ptr->top == ptr->array_size - 1)
-		isFull(ptr->top);
-	else if (ptr->top == -1 || ptr->top == '\0')
-		isEmpty(ptr->top);
+	//if (ptr->top == ptr->array_size - 1)
+	//	return;
+	//	//isFull(ptr->top);
+	//else if (ptr->top == -1 || ptr->top == '\0')
+	//	//isEmpty(ptr->top);
+	//	printf("hi");
 	return ptr;
 }
 
-void pop(stack* delete_ptr)
+void pop(stack* pop_ptr)
 {
-	if (delete_ptr->top == -1) {
+	if (pop_ptr->top == -1) {
 		printf("Error! Already Not Created!\n");
 		return EOF;
 	}
-	delete_ptr->top--;
-
+	pop_ptr->top--;
 }
 
-void isFull(int top_value)
+int isFull(const stack* ptr)
 {
-	return (stck_ptr->top == stck_ptr->array_size - 1);
-	//if (top_value == stck_ptr->array_size - 1)
-	//{
-	//	printf("Stack is FULL!\n");
-	//}
+	return (ptr->top == ptr->array_size - 1);
 }
 
-void isEmpty(int top_value)
+int isEmpty(const stack* ptr)
 {
-	return (stck_ptr->top == -1);
-	//if (top_value == '\0')
-	//{
-	//	printf("Stack is Empty!\n");
-	//}
+	return (ptr->top == -1);
 }
 
 void print(stack* print_ptr)

@@ -3,20 +3,31 @@
 #include <stdlib.h>
 #include <assert.h>
 
-
 int main() {
-
-	stck_ptr = stack_init(5);
+	
+	stack* stck_ptr = stack_init(5);
 
 	push(stck_ptr, 1);
 	push(stck_ptr, 2);
 	push(stck_ptr, 3);
 	push(stck_ptr, 4);
 	push(stck_ptr, 5);
-	
+
 	pop(stck_ptr);
 
 	print(stck_ptr);
+
+
+	if (isFull(stck_ptr)) {
+		printf("Stack is FULL!\n");
+	}
+
+	if (isEmpty(stck_ptr)) {
+		printf("Stack is Empty!\n");
+	}
+
+
+
 
 	return 0;
 }
